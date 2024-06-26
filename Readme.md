@@ -11,7 +11,7 @@ Supervisor:
 
 Steps:
 
-<img src="steps.png" width="200" height="100">
+<img src="steps.png" width="250" height="300">
 
 - Train a U-NET model with NYUDEPTHV2 dataset in pytorch.
 - Quantize the model with VITIS AI.
