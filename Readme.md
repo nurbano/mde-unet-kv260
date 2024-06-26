@@ -10,7 +10,8 @@ Supervisor:
 - Carlos Valderrama (UMONS)
 
 Steps:
-- Train a U-NET model with NYUDEPTHV2 dataset.
+![Steps](/steps.png "Steps")
+- Train a U-NET model with NYUDEPTHV2 dataset in pytorch.
 - Quantize the model with VITIS AI.
 - Compile the quantized model for DPU.
 - Evaluate the model in the Kria KV260 
