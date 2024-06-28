@@ -70,7 +70,61 @@ Command line options:
  --num_img      :  5000
  --evaluate      :  False
  --model_path      :  ./model.pth
-``` 
+```
 For this project, the model was training with 50k images and 50 epochs. And the default losses (L1) and default optimizer (AdamW) with a lr=0.0001. The 50k images was subset in 90% for training and 10% for validate.
 
-<img src="train_loss.png">
+## Evaluate in PC
+For evaluate the model in PC, run the jupyter notebook infer.ipynb in the conda env.
+
+## Prepare the Vitis AI 1.4.1 for CPU
+In a ubuntu PC:
+- First install the docker:
+```console
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+- Manager Docker as non-root user:
+```console
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
+- Clone the Vitis AI repository:
+```console
+  git clone --recurse-submodules --branch 1.4.1 https://github.com/Xilinx/Vitis-AI
+```
+- Go to the Vitis AI directory:
+```console
+  cd Vitis-AI
+```
+- Pull the pre-built docker image:
+```console
+  docker pull xilinx/vitis-ai-cpu:1.4.1.978
+```
+- Modify the ducker_run.sh bash to add the path of the dataset. After the line 93 include this: -v /path/to/nyudepthv2:/workspace/Dataset/nyudepthv2
+- Run the docker:
+```console
+./docker_run.sh xilinx/vitis-ai-cpu:1.4.1.978
+```
+- Activate the conda environment for pytorch:
+```console
+conda activate vitis-ai-pytorch
+```
+- Create a directory for the project:
+```console
+mkdir custom_ai_model
+```
+- Is necessary copy this reposotory directory to path/to/Vitis-AI/custom_ai_model
+
+## Quantize
+First calibrate the quantize model.
+```console
+python3 src/quantize.py -q calib -b 4
+```
+And then test the quantized model
+```console
+python3 src/quantize.py -q test
+``` 
+## Compile for DPU
+```console
+bash compile.sh kv260
+``` 
