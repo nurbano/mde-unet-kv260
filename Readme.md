@@ -71,6 +71,6 @@ Command line options:
  --evaluate      :  False
  --model_path      :  ./model.pth
 ``` 
-For this project, the model was training with 50k images and 50 epochs, with L1 losses, AdamW for optimizer with and lr=0.0001. The 50k images was subset in 90% for training and 10% for validate.
+For this project, the model was training with 50k images and 50 epochs. And the default losses (L1) and default optimizer (AdamW) with a lr=0.0001. The 50k images was subset in 90% for training and 10% for validate.
 
-
+<img src="train_loss.png">
