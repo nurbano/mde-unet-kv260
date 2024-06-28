@@ -31,22 +31,46 @@ pip install requirements.txt
 
 ## Prepare Dataset
 1- Download the dataset from http://datasets.lids.mit.edu/fastdepth/data/nyudepthv2.tar.gz
+
 2- Extract the dataset. The directory structure is:
-                                                  /nyudepthv2/
-                                                            /train/ -> Train subset
-                                                            /val/official/ -> Validation subset
-
+```
+nyudepthv2
+│
+└───train
+│   │
+│   └───basement_0001a
+│   │       │   00001.h5
+│   │       │   00006.h5
+│   │       │   ...
+│   └───basement_0001b
+│   │       │   00001.h5
+│   │       │   00006.h5
+│   │       │   ...
+│   └───...
+│   │   
+└───val
+    │ 
+    └───official
+    │       │   00001.h5
+    │       │   00002.h5
+    │       │   ...
+```
+                                                         
 ## Train
+To train the model use this script:
 ```console
-python train.py -d /media/nurbano/Datos7/Datasets/nyudepthv2 -e 20 -n 5000
+python train.py -d /path/to/nyudepthv2 -e 20 -n 5000
+```  
+The arguments are:
 
-------------------------------------
-3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:38:13) [GCC 12.3.0]
-------------------------------------
+```console
 Command line options:
- --dataset_dir    :  /media/nurbano/Datos7/Datasets/nyudepthv2
+ --dataset_dir    :  /path/to/
  --epochs      :  20
  --num_img      :  5000
  --evaluate      :  False
  --model_path      :  ./model.pth
-```  
+``` 
+For this project, the model was training with 50k images and 50 epochs, with L1 losses, AdamW for optimizer with and lr=0.0001. The 50k images was subset in 90% for training and 10% for validate.
+
+
