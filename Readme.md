@@ -1,11 +1,12 @@
-# AMD Open Hardware 2024
 ## Monocular Depth estimation for interior scenarios in real time on Kria KV260
 From a single RGB image, infer in real-time with a Kria KV260 a depth map using convolutional neural networks.
 ![Diagram](/diagram.png "Diagram MDE KV260")
+### AMD Open Hardware 2024
 ### Team number: AOHW-305
 Participants:
 - Nicolás Urbano Pintos (UTN FRH /CITEDEF)
 - Monal Patel Rakeshbhai (UMONS)
+
 Supervisor:
 - Carlos Valderrama (UMONS)
 
@@ -31,7 +32,6 @@ pip install requirements.txt
 
 ## Prepare Dataset
 1- Download the dataset from http://datasets.lids.mit.edu/fastdepth/data/nyudepthv2.tar.gz
-
 2- Extract the dataset. The directory structure is:
 ```
 nyudepthv2
@@ -78,7 +78,7 @@ For evaluate the model in PC, run the jupyter notebook infer.ipynb in the conda 
 
 ## Prepare the Vitis AI 1.4.1 for CPU
 In a ubuntu PC:
-- First install the docker:
+- First install docker:
 ```console
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
@@ -127,4 +127,27 @@ python3 src/quantize.py -q test
 ## Compile for DPU
 ```console
 bash compile.sh kv260
-``` 
+```
+## Prepare the SD for kria kv260
+For this project is necessary use the Ubuntu 20.21, download the image from:
+https://people.canonical.com/~platform/images/xilinx/kria/iot-kria-classic-desktop-2004-x03-20211110-98.img.xz?_gl=1*16usueu*_gcl_au*Mzk5MTE0ODkyLjE3MTExMDYyMjg.&_ga=2.59807085.1133415059.1711106229-1097448103.1710778457
+- Extract the image:
+```console
+unxz iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img.xz
+```
+- Format a SD:
+```console
+mkfs.exfat /dev/sdd
+```
+- Copy the img to the sd:
+```console
+dd if=iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img of=/dev/sdd conv=fsync status=progress
+```
+- To setup the Kria KV260 following the steps of this link:
+  https://www.amd.com/en/products/system-on-modules/kria/k26/kv260-vision-starter-kit/getting-started/getting-started.html
+  
+## Evaluate the model in the kria kv260
+
+- Connect to a net with a ethernet cable.
+- Turn on the kria kv260.
+- 
