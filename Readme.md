@@ -74,7 +74,10 @@ Command line options:
 For this project, the model was training with 50k images and 50 epochs. And the default losses (L1) and default optimizer (AdamW) with a lr=0.0001. The 50k images was subset in 90% for training and 10% for validate.
 
 ## Evaluate in PC
-For evaluate the model in PC, run the jupyter notebook infer.ipynb in the conda env.
+For evaluate the model in PC, run the jupyter notebook infer.ipynb in the conda env. To launch jupyter lab use:
+```console
+jupyter lab
+```
 
 ## Prepare the Vitis AI 1.4.1 for CPU
 In a ubuntu PC:
@@ -100,7 +103,7 @@ newgrp docker
 ```console
   docker pull xilinx/vitis-ai-cpu:1.4.1.978
 ```
-- Modify the ducker_run.sh bash to add the path of the dataset. After the line 93 include this: -v /path/to/nyudepthv2:/workspace/Dataset/nyudepthv2
+- Modify the docker_run.sh bash to add the path of the dataset. After the line 93 include this: -v /path/to/nyudepthv2:/workspace/Dataset/nyudepthv2
 - Run the docker:
 ```console
 ./docker_run.sh xilinx/vitis-ai-cpu:1.4.1.978
@@ -113,7 +116,7 @@ conda activate vitis-ai-pytorch
 ```console
 mkdir custom_ai_model
 ```
-- Is necessary copy this reposotory directory to path/to/Vitis-AI/custom_ai_model
+- Is necessary copy this repository directory to path/to/Vitis-AI/custom_ai_model
 
 ## Quantize
 First calibrate the quantize model.
@@ -145,9 +148,37 @@ dd if=iot-limerick-kria-classic-desktop-2204-x07-20230302-63.img of=/dev/sdd con
 ```
 - To setup the Kria KV260 following the steps of this link:
   https://www.amd.com/en/products/system-on-modules/kria/k26/kv260-vision-starter-kit/getting-started/getting-started.html
-  
+## Install KRIA-PYNQ
+```console
+git clone https://github.com/Xilinx/Kria-PYNQ.git
+cd Kria-PYNQ/
+sudo bash install.sh -b KV260 
+```
 ## Evaluate the model in the kria kv260
+- Open the jupyter lab in the browser with
+```console
+<ip_address>:9090/lab
+```
+- In the file manager of jupyter lab upload the file mde_kv260.tar.gz.
+- Open the terminal inside the jupyter lab and extract the tar.gz with:
+```console
+tar –xvzf kv260.tar.gz
+```
+- In the file manager of jupyter lab you can see the directory estructure
+```
+mde_kv260
+│
+└───images
+│   │   1.png
+│   │   1.npy
+│   │   2.png
+│   │   2.npy
+│   │   ...
+│   │   
+    unet.ipynb
+    CNN_KV260.xmodel
+```
+- Open the notebook unet.ipynb and run all cell to evalauate the model in the kria kv260.
 
-- Connect to a net with a ethernet cable.
-- Turn on the kria kv260.
-- 
+
+
