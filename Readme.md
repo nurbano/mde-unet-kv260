@@ -179,6 +179,6 @@ mde_kv260
     CNN_KV260.xmodel
 ```
 - Open the notebook unet.ipynb and run all cell to evalauate the model in the kria kv260.
-
+<img src="output_kria.png">
 
 
