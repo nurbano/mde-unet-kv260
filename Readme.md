@@ -78,7 +78,7 @@ For evaluate the model in PC, run the jupyter notebook infer.ipynb in the conda 
 ```console
 jupyter lab
 ```
-
+You can download our trained model from: https://drive.google.com/file/d/1JBq8XnR-XfEQ6-DKiAEY3ZmbbWS5OZOy/view?usp=sharing
 ## Prepare the Vitis AI 1.4.1 for CPU
 In a ubuntu PC:
 - First install docker:
