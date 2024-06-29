@@ -121,11 +121,11 @@ mkdir custom_ai_model
 ## Quantize
 First calibrate the quantize model.
 ```console
-python3 src/quantize.py -q calib -b 4
+python3 quantize.py -q calib -b 4
 ```
 And then test the quantized model
 ```console
-python3 src/quantize.py -q test
+python3 quantize.py -q test
 ``` 
 ## Compile for DPU
 ```console
@@ -159,10 +159,10 @@ sudo bash install.sh -b KV260
 ```console
 <ip_address>:9090/lab
 ```
-- In the file manager of jupyter lab upload the file mde_kv260.tar.gz.
+- In the file manager of jupyter lab upload the file mde_kv260.tar.xz.
 - Open the terminal inside the jupyter lab and extract the tar.gz with:
 ```console
-tar –xvzf kv260.tar.gz
+tar –xvzf mde_kv260.tar.xz
 ```
 - In the file manager of jupyter lab you can see the directory estructure
 ```
