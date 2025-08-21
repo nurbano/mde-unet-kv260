@@ -75,11 +75,11 @@ class NYUDEPTHV2(Dataset):
         im = (im - np.min(im))/(np.max(im) - np.min(im))
         im = (im - 0.5)*2.0
         
-        #de = (de - 0.7)/(10.0 - 0.7)
+        de = (de - 0.7)/(10.0 - 0.7)
         
-        #de = np.clip(de, 0.0, 1.0)
-        de= de/5
-        de= np.clip(de, 0, 5)
+        de = np.clip(de, 0.0, 1.0)
+        # de= de/5
+        # de= np.clip(de, 0, 5)
         
         de = np.expand_dims(de, axis=0)
         

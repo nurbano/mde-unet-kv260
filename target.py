@@ -17,8 +17,8 @@ from dataset import NYUDEPTHV2
 
 tran = transforms.Compose([transforms.Resize([224,224])])
 
-folder = "train"
-root = "/workspace/Dataset/nyudepthv2"
+folder = "val/official"
+root = "/media/nurbano/Datos12/Datasets/nyudepthv2"
 
 path = root + "/" + folder 
 

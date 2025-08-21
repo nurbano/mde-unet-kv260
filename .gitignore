@@ -1,0 +1,5 @@
+models/
+dataset_kria/
+*.pyc
+settings.json
+dataset_kria.tar.xz
